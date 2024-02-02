@@ -52,7 +52,7 @@ import {
                     textAlign="center"
                     width={'50vw'}
                 >
-                    <Text fontSize={'2xl'} fontStyle={'bold'} marginBottom={'20px'} color={'teal'}>Upload Files to S3 Bucket</Text>
+                    <Text fontSize={'2xl'} fontStyle={'bold'} marginBottom={'20px'} color={'teal'}>Upload File to S3 Bucket</Text>
                     <form action={formAction}>
                         <InputGroup  style={{ display: 'flex', alignItems: 'center' }}>
                         

@@ -7,7 +7,7 @@ export function SubmitButton() {
 
   return (
     <Button type="submit" className="submit-button" _disabled={pending} colorScheme={'teal'} >
-      {pending ? "Uploading..." : "File Upload"}
+      {pending ? "Uploading..." : "Upload File"}
     </Button>
   );
 }
