@@ -4,10 +4,10 @@ import {
     FormLabel,
     InputGroup,
     InputLeftElement,
-    FormErrorMessage,
+    Flex,
     Text,
     Icon,
-    Button
+    Link
   } from "@chakra-ui/react";
   import { MdCloudUpload } from "react-icons/md";
   
@@ -27,50 +27,61 @@ import {
 
     
     return(
-        <Box 
-            backgroundSize="cover"
-            backgroundPosition="center"
-            height="100vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-        >
-            <Box
-                p={6}
-                borderRadius="md"
-                boxShadow="md"
-                textAlign="center"
-                width={'50vw'}
+        <>
+            <Flex justifyContent={'space-between'} borderBottom={'2px'} height={'50px'}>
+                <Text fontSize="3xl" fontWeight="bold"  marginLeft={'10px'}>
+                    MWANGANGI'S S3 BUCKET
+                </Text>
+                <Link href="/" color="teal.500" fontSize="2xl"  marginRight={'10px'}>
+                    Home
+                </Link>
+            </Flex>
+            <Box 
+                backgroundSize="cover"
+                backgroundPosition="center"
+                height="100vh"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
             >
-                <Text fontSize={'2xl'} fontStyle={'bold'} marginBottom={'20px'} color={'teal'}>Upload Files to S3 Bucket</Text>
-                <form action={formAction}>
-                    <InputGroup  style={{ display: 'flex', alignItems: 'center' }}>
-                    
-                    <InputLeftElement pointerEvents="none" fontSize="1.2em">
-                        <Icon as={MdCloudUpload} />
-                    </InputLeftElement>
-                    <Input
-                        name='file'
-                        type="file"
-                        id="file"
-                        accepted={acceptedFileTypes}
-                        marginTop={'5px'}
-                    />
-                    
+                
+                <Box
+                    p={6}
+                    borderRadius="md"
+                    boxShadow="md"
+                    textAlign="center"
+                    width={'50vw'}
+                >
+                    <Text fontSize={'2xl'} fontStyle={'bold'} marginBottom={'20px'} color={'teal'}>Upload Files to S3 Bucket</Text>
+                    <form action={formAction}>
+                        <InputGroup  style={{ display: 'flex', alignItems: 'center' }}>
                         
-                    </InputGroup>
-                    <SubmitButton/>
-                </form>
-                {state?.status && (
-                    <Box
-                        backgroundColor={state.status === 'success' ? '#B2F5EA' : '#FED7D7'}
-                    >
-                        <Text>{state?.message}</Text>
-                    </Box>
-                ) 
-                }
+                        <InputLeftElement pointerEvents="none" fontSize="1.2em">
+                            <Icon as={MdCloudUpload} />
+                        </InputLeftElement>
+                        <Input
+                            name='file'
+                            type="file"
+                            id="file"
+                            accepted={acceptedFileTypes}
+                            marginTop={'5px'}
+                        />
+                        
+                            
+                        </InputGroup>
+                        <SubmitButton/>
+                    </form>
+                    {state?.status && (
+                        <Box
+                            backgroundColor={state.status === 'success' ? '#B2F5EA' : '#FED7D7'}
+                        >
+                            <Text>{state?.message}</Text>
+                        </Box>
+                    ) 
+                    }
+                </Box>
             </Box>
-        </Box>
+        </>
     )
   }
 
