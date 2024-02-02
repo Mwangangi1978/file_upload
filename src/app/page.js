@@ -10,7 +10,7 @@ const Home = () => {
           MWANGANGI'S S3 BUCKET
         </Text>
         <Link href="/upload" color="teal.500" fontSize="lg">
-          Go to Upload
+          Upload File
         </Link>
       </Flex>
 
