@@ -54,6 +54,23 @@
   transition: background 200ms, border 200ms;
 }
 
+.fadeIn {
+  animation: fadeInAnimation 5s ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.centered {
+  margin: 0 auto;
+}
+
 .card span {
   display: inline-block;
   transition: transform 200ms;
