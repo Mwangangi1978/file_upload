@@ -13,16 +13,26 @@ const s3Client = new S3Client({
 
 
 async function uploadFileToS3(file, fileName) {
-  const fileBuffer = await sharp(file)
-  .jpeg({quality: 50})
-  .resize(800, 400)
-  .toBuffer();
+  let contentType;
+
+  // Determine the content type based on the file extension
+  if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")) {
+    contentType = "image/jpeg";
+  } else if (fileName.endsWith(".png")) {
+    contentType = "image/png";
+  } else if (fileName.endsWith(".mp4")) {
+    contentType = "video/mp4";
+  } else {
+    // Default to a generic binary file
+    contentType = "application/octet-stream";
+  }
 
   const params = {
     Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME,
-    Key: `${fileName}`,
-    Body: fileBuffer,
-    ContentType: "image/jpg",
+    Key: fileName,
+    Body: file,
+    ContentType: contentType,
+    ContentDisposition: 'inline'
   };
 
   const command = new PutObjectCommand(params);
@@ -47,7 +57,7 @@ export async function uploadFile(prevState, formData) {
     await uploadFileToS3(buffer, file.name);
 
     revalidatePath("/");
-    return { status: "success", message: "File has been upload." };
+    return { status: "success", message: "File has been uploaded." };
   } catch (error) {
     return { status: "error", message: "Failed to upload file." };
   }
